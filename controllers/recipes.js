@@ -22,7 +22,7 @@ const getRecipe = (req, res) => {
 };
 
 const createRecipe = (req, res) => {
-  const { recipeName, description, ingredients } = req.body;
+  const { recipeName, image, ingredients, description } = req.body;
   console.log(req.body);
 
   res.send("create new recipe");
@@ -36,7 +36,7 @@ const deleteRecipe = (req, res) => {
 
 const updateRecipe = (req, res) => {
   const { id } = req.params;
-  const { recipeName, description, ingredients } = req.body;
+  const { recipeName, image, ingredients, description } = req.body;
 
   res.send(`update recipe with id ${id}`);
 };
