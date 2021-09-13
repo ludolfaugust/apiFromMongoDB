@@ -4,7 +4,6 @@ const Recipe = require("../models/Recipe");
 const getRecipes = async (req, res) => {
   try {
     const recipes = await Recipe.find();
-    console.log(recipes);
     res.json({
       success: true,
       data: recipes,
@@ -21,9 +20,24 @@ const getRecipe = (req, res) => {
   res.send(`get recipe with id ${id}`);
 };
 
-const createRecipe = (req, res) => {
-  const { recipeName, image, ingredients, description } = req.body;
-  console.log(req.body);
+const createRecipe = async (req, res) => {
+  try {
+    const { recipeName, image, ingredients, description } = req.body;
+    const recipe = await Recipe.create({
+      recipeName,
+      image,
+      ingredients,
+      description,
+    });
+
+    res.json({
+      sucess: true,
+      data: recipe,
+      msg: `show recipe with id §{id}`,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 
   res.send("create new recipe");
 };
